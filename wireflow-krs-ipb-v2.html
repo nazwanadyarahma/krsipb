@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wireflow v2 – KRS IPB | Nazwa Nadya Rahma</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap');
+
+:root {
+  --bg: #EFEFEC;
+  --ink: #181818;
+  --mid: #6B6B6B;
+  --light: #C5C2BC;
+  --wire-bg: #FAFAF8;
+  --wire-border: #181818;
+  --accent: #1A56DB;
+  --accent2: #D93025;
+  --green: #1E7E34;
+  --yellow: #F4C430;
+  --card: #FFFFFF;
+  --flow-line: #1A56DB;
+  --shadow: 4px 4px 0 #181818;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'IBM Plex Sans', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+/* ── HEADER ── */
+header {
+  background: var(--ink);
+  color: #fff;
+  padding: 20px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 3px solid var(--accent);
+}
+.h-left .brand {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: #888;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.h-left h1 { font-size: 20px; font-weight: 700; letter-spacing: -0.02em; }
+.h-right {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: #888;
+  text-align: right;
+  line-height: 1.8;
+}
+
+/* ── LEGEND ── */
+.legend {
+  background: var(--card);
+  border-bottom: 1px solid var(--light);
+  padding: 10px 40px;
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  font-size: 11px;
+  font-family: 'IBM Plex Mono', monospace;
+  flex-wrap: wrap;
+}
+.leg { display: flex; align-items: center; gap: 7px; }
+.leg-box {
+  width: 14px; height: 14px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+/* ── CANVAS ── */
+.canvas { padding: 40px; display: flex; flex-direction: column; gap: 60px; }
+
+.sec-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.sec-label::after { content: ''; flex: 1; height: 1px; background: var(--light); }
+
+/* ═══════════════════════════════
+   WIREFLOW ROW (3 screens + flow)
+═══════════════════════════════ */
+.wireflow-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  overflow-x: auto;
+  padding-bottom: 16px;
+}
+
+/* Flow connector between phones */
+.flow-connector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  padding-top: 180px;
+  flex-shrink: 0;
+  gap: 6px;
+}
+.flow-connector .arrow-line {
+  width: 60px;
+  height: 2px;
+  background: var(--flow-line);
+  position: relative;
+}
+.flow-connector .arrow-line::after {
+  content: '';
+  position: absolute;
+  right: -1px; top: -4px;
+  border-left: 8px solid var(--flow-line);
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+.flow-connector .flow-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  color: var(--accent);
+  text-align: center;
+  line-height: 1.3;
+}
+.flow-connector .flow-action {
+  background: #EEF2FF;
+  border: 1px solid var(--accent);
+  border-radius: 3px;
+  padding: 3px 7px;
+  font-size: 9px;
+  font-family: 'IBM Plex Mono', monospace;
+  color: var(--accent);
+  text-align: center;
+}
+
+/* Phone wrapper with label */
+.phone-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.phone-screen-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--mid);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.screen-num {
+  background: var(--ink);
+  color: #fff;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+  margin-right: 6px;
+}
+
+/* ── PHONE MOCKUP ── */
+.phone {
+  width: 280px;
+  border: 2.5px solid var(--wire-border);
+  border-radius: 24px;
+  overflow: hidden;
+  background: var(--card);
+  box-shadow: var(--shadow);
+}
+
+/* common phone parts */
+.p-statusbar {
+  background: #1A3A9C;
+  padding: 5px 14px;
+  display: flex;
+  justify-content: space-between;
+}
+.p-statusbar span { color: #fff; font-size: 9px; font-family: 'IBM Plex Mono', monospace; }
+
+.p-urlbar {
+  background: #1E47B8;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.p-url {
+  background: rgba(255,255,255,0.18);
+  border-radius: 3px;
+  padding: 3px 8px;
+  font-size: 10px;
+  color: #fff;
+  font-family: 'IBM Plex Mono', monospace;
+  flex: 1;
+}
+
+.p-nav {
+  background: #1565C0;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #0D47A1;
+}
+.p-nav .site-id {
+  font-size: 9px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.3;
+}
+.p-nav .nav-links { display: flex; gap: 4px; }
+.p-navlink {
+  font-size: 8px;
+  color: rgba(255,255,255,0.85);
+  background: rgba(255,255,255,0.12);
+  padding: 2px 5px;
+  border-radius: 2px;
+}
+
+.p-body { background: var(--wire-bg); }
+
+/* ── HERO BANNER ── */
+.p-hero {
+  background: linear-gradient(135deg, #1565C0 0%, #1976D2 100%);
+  padding: 12px 12px 10px;
+  text-align: center;
+  color: #fff;
+}
+.p-hero .badge {
+  background: #FFD600;
+  color: #111;
+  font-size: 8px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 2px;
+  display: inline-block;
+  margin-bottom: 5px;
+  font-family: 'IBM Plex Mono', monospace;
+}
+.p-hero h3 { font-size: 11px; font-weight: 700; line-height: 1.35; margin-bottom: 3px; }
+.p-hero p  { font-size: 8px; opacity: 0.88; line-height: 1.3; }
+
+/* ── STATUS AKADEMIK strip ── */
+.p-status-strip {
+  background: #E8F5E9;
+  border-top: 1.5px solid #A5D6A7;
+  border-bottom: 1.5px solid #A5D6A7;
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.p-status-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #2E7D32;
+  flex-shrink: 0;
+}
+.p-status-text {
+  font-size: 9px;
+  font-weight: 700;
+  color: #2E7D32;
+}
+.p-status-sub {
+  font-size: 8px;
+  color: #388E3C;
+  margin-left: auto;
+}
+
+/* ── SKS BATAS strip ── */
+.p-sks-bar {
+  background: #FFF3E0;
+  border-bottom: 1.5px solid #FFCC80;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.p-sks-label { font-size: 8px; color: #E65100; font-weight: 700; }
+.p-sks-val {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: #BF360C;
+  font-weight: 700;
+}
+.p-sks-of { font-size: 8px; color: #E65100; }
+.p-sks-bar .sks-used {
+  margin-left: auto;
+  font-size: 8px;
+  color: #E65100;
+}
+/* progress bar inside sks */
+.p-sks-progress-wrap {
+  width: 100%;
+  height: 4px;
+  background: #FFCC80;
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 2px;
+}
+.p-sks-progress-fill {
+  height: 100%;
+  background: #E65100;
+  border-radius: 2px;
+  width: 0%;
+}
+
+/* ── TWO COL DATA + ANNOUNCE ── */
+.p-two-col {
+  display: grid;
+  grid-template-columns: 108px 1fr;
+  border-top: 1px solid #ddd;
+}
+.p-data-col {
+  background: #1565C0;
+  padding: 8px;
+  border-right: 1px solid #ddd;
+}
+.p-data-col .col-h {
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.p-data-row {
+  background: rgba(255,255,255,0.95);
+  border-radius: 2px;
+  padding: 2px 5px;
+  margin-bottom: 2px;
+}
+.p-data-row .lbl { font-size: 7px; color: var(--mid); }
+.p-data-row .val { font-size: 8px; font-weight: 700; line-height: 1.2; }
+
+/* biodata button */
+.p-biodata-btn {
+  background: #fff;
+  border: 1.5px solid #fff;
+  border-radius: 3px;
+  color: #1565C0;
+  font-size: 8px;
+  font-weight: 700;
+  padding: 3px 6px;
+  text-align: center;
+  margin-top: 5px;
+  cursor: default;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+}
+
+.p-ann-col { padding: 8px; }
+.p-ann-h {
+  font-size: 9px;
+  font-weight: 700;
+  background: #E8EAF6;
+  padding: 2px 5px;
+  border-radius: 2px;
+  margin-bottom: 5px;
+  color: var(--ink);
+}
+.p-ann-item {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 4px;
+  align-items: flex-start;
+}
+.p-ann-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 8px;
+  color: #fff;
+  background: var(--accent);
+  min-width: 12px;
+  height: 12px;
+  border-radius: 1px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.p-ann-text { font-size: 8px; line-height: 1.3; }
+.p-ann-text .hi  { color: var(--accent); font-weight: 700; }
+.p-ann-text .hir { color: var(--accent2); font-weight: 700; }
+.p-more { font-size: 8px; color: var(--mid); font-style: italic; padding: 0 8px 4px; }
+
+/* CTA bar */
+.p-cta {
+  padding: 8px 12px;
+  border-top: 1px solid #ddd;
+  display: flex;
+  justify-content: center;
+  background: var(--wire-bg);
+}
+.p-cta-btn {
+  background: var(--accent);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 7px 20px;
+  border: 2px solid var(--wire-border);
+  border-radius: 4px;
+  font-family: 'IBM Plex Mono', monospace;
+  box-shadow: 3px 3px 0 var(--ink);
+  cursor: default;
+}
+
+/* ── LOGIN SCREEN ── */
+.p-login-body {
+  padding: 20px 16px;
+  background: var(--wire-bg);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.p-login-logo {
+  text-align: center;
+  margin-bottom: 8px;
+}
+.p-login-logo .logo-box {
+  display: inline-block;
+  background: #1565C0;
+  color: #fff;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: 4px;
+  margin-bottom: 4px;
+}
+.p-login-logo .logo-sub { font-size: 9px; color: var(--mid); }
+
+.p-field label { font-size: 9px; color: var(--mid); display: block; margin-bottom: 3px; font-weight: 600; }
+.p-field-box {
+  width: 100%;
+  border: 1.5px solid #C5C2BC;
+  border-radius: 3px;
+  padding: 6px 8px;
+  font-size: 10px;
+  background: #fff;
+  color: var(--mid);
+  font-family: 'IBM Plex Mono', monospace;
+}
+.p-field-box.filled { border-color: var(--accent); color: var(--ink); }
+
+.p-login-btn {
+  background: var(--accent);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 8px;
+  border: 2px solid var(--wire-border);
+  border-radius: 4px;
+  text-align: center;
+  font-family: 'IBM Plex Mono', monospace;
+  box-shadow: 3px 3px 0 var(--ink);
+  cursor: default;
+  margin-top: 4px;
+}
+.p-login-note { font-size: 8px; color: var(--mid); text-align: center; }
+
+/* ── PENGISIAN KRS SCREEN ── */
+.p-krs-subheader {
+  background: #0D47A1;
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-bottom: 1px solid #1565C0;
+}
+.p-krs-subheader .krs-title { color: #fff; font-size: 10px; font-weight: 700; }
+.p-krs-subheader .krs-sem   { color: rgba(255,255,255,0.75); font-size: 8px; margin-left: auto; }
+
+.p-krs-sks-summary {
+  background: #E3F2FD;
+  padding: 6px 10px;
+  display: flex;
+  gap: 10px;
+  border-bottom: 1px solid #BBDEFB;
+}
+.p-krs-sks-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.p-krs-sks-box .sks-n {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 16px;
+  font-weight: 700;
+  color: #0D47A1;
+  line-height: 1;
+}
+.p-krs-sks-box .sks-lbl { font-size: 7px; color: #1565C0; }
+.p-krs-sks-divider { width: 1px; background: #BBDEFB; }
+.p-krs-sks-max {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 8px;
+  color: #1565C0;
+}
+.p-krs-sks-max strong { font-size: 13px; font-family: 'IBM Plex Mono', monospace; color: #0D47A1; }
+
+.p-krs-filter {
+  padding: 6px 10px;
+  display: flex;
+  gap: 5px;
+  border-bottom: 1px solid #ddd;
+  background: #fff;
+}
+.p-krs-filter-pill {
+  background: #EEF2FF;
+  border: 1px solid var(--accent);
+  border-radius: 20px;
+  font-size: 8px;
+  padding: 2px 7px;
+  color: var(--accent);
+  font-family: 'IBM Plex Mono', monospace;
+}
+.p-krs-filter-pill.active {
+  background: var(--accent);
+  color: #fff;
+}
+
+.p-mk-list { padding: 6px 8px; background: var(--wire-bg); }
+.p-mk-item {
+  background: #fff;
+  border: 1.5px solid #ddd;
+  border-radius: 3px;
+  padding: 6px 8px;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+}
+.p-mk-item.selected { border-color: var(--accent); background: #EEF2FF; }
+.p-mk-check {
+  width: 12px; height: 12px;
+  border: 1.5px solid #aaa;
+  border-radius: 2px;
+  flex-shrink: 0;
+  margin-top: 1px;
+  display: flex; align-items: center; justify-content: center;
+}
+.p-mk-check.checked {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.p-mk-check.checked::after { content: '✓'; color: #fff; font-size: 8px; }
+.p-mk-info .mk-code {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 8px;
+  color: var(--mid);
+}
+.p-mk-info .mk-name { font-size: 9px; font-weight: 700; line-height: 1.2; }
+.p-mk-info .mk-meta { font-size: 8px; color: var(--mid); }
+.p-mk-sks {
+  margin-left: auto;
+  background: #E8F5E9;
+  border: 1px solid #A5D6A7;
+  border-radius: 2px;
+  padding: 1px 5px;
+  font-size: 8px;
+  font-family: 'IBM Plex Mono', monospace;
+  color: #2E7D32;
+  flex-shrink: 0;
+}
+.p-mk-sks.taken {
+  background: #EEF2FF;
+  border-color: #9FA8DA;
+  color: var(--accent);
+}
+
+.p-krs-save {
+  padding: 8px 10px;
+  border-top: 1px solid #ddd;
+  display: flex;
+  gap: 6px;
+  background: #fff;
+}
+.p-krs-save-btn {
+  flex: 1;
+  background: var(--accent);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 6px;
+  border: 1.5px solid var(--wire-border);
+  border-radius: 3px;
+  text-align: center;
+  font-family: 'IBM Plex Mono', monospace;
+  box-shadow: 2px 2px 0 var(--ink);
+  cursor: default;
+}
+.p-krs-save-btn.outline {
+  background: #fff;
+  color: var(--ink);
+}
+
+/* ═══════════════════════════════
+   ANNOTATIONS BELOW WIREFLOW
+═══════════════════════════════ */
+.anno-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.anno-card {
+  background: var(--card);
+  border: 2px solid var(--ink);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.anno-card-head {
+  background: var(--ink);
+  color: #fff;
+  padding: 7px 12px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.anno-card-head .zone {
+  background: var(--accent);
+  padding: 1px 6px;
+  border-radius: 2px;
+  font-size: 9px;
+}
+.anno-card-body { padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+.anno-item {
+  display: flex;
+  gap: 8px;
+  font-size: 11px;
+  line-height: 1.45;
+  align-items: flex-start;
+}
+.a-dot {
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 9px;
+  font-weight: 700;
+  color: #fff;
+  font-family: 'IBM Plex Mono', monospace;
+  margin-top: 1px;
+}
+.a-dot.b { background: var(--accent); }
+.a-dot.r { background: var(--accent2); }
+.a-dot.g { background: var(--green); }
+.a-dot.y { background: #8B6914; }
+
+.tag-bad  { background: #FDECEA; color: var(--accent2); border: 1px solid #F5B4AE; font-size: 9px; padding: 1px 4px; border-radius: 2px; font-family: 'IBM Plex Mono', monospace; }
+.tag-good { background: #E8F5E9; color: var(--green); border: 1px solid #A5D6A7; font-size: 9px; padding: 1px 4px; border-radius: 2px; font-family: 'IBM Plex Mono', monospace; }
+
+/* ═══════════════════════════════
+   USER FLOW SVG SECTION
+═══════════════════════════════ */
+.uf-wrap {
+  background: var(--card);
+  border: 2px solid var(--ink);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.uf-head {
+  background: var(--ink);
+  color: #fff;
+  padding: 12px 20px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.uf-svg-wrap { overflow-x: auto; padding: 28px 24px; background: #FAFAF8; }
+
+footer {
+  background: var(--ink);
+  color: #666;
+  padding: 16px 40px;
+  display: flex;
+  justify-content: space-between;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  border-top: 3px solid var(--accent);
+  flex-wrap: wrap;
+  gap: 6px;
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="h-left">
+    <div class="brand">Wireflow · HCI Week 10 · v2</div>
+    <h1>Wireflow — KRS IPB</h1>
+  </div>
+  <div class="h-right">
+    Nazwa Nadya Rahma · M0403241060<br>
+    Ilmu Komputer · Semester 5<br>
+    Task: Login → Home KRS → Pengisian KRS
+  </div>
+</header>
+
+<!-- LEGEND -->
+<div class="legend">
+  <span style="font-weight:700;color:var(--ink)">LEGEND:</span>
+  <div class="leg"><div class="leg-box" style="background:#181818;border-radius:50%"></div>Start/End</div>
+  <div class="leg"><div class="leg-box" style="background:#EEF2FF;border:2px solid var(--accent)"></div>Screen</div>
+  <div class="leg"><div class="leg-box" style="background:#fff;border:2px solid #181818"></div>Action</div>
+  <div class="leg"><div class="leg-box" style="background:var(--yellow);border:2px solid #181818"></div>Decision</div>
+  <div class="leg"><div class="leg-box" style="background:var(--accent)"></div>Happy Path</div>
+  <div class="leg"><div class="leg-box" style="background:var(--accent2)"></div>Error / Alt</div>
+  <div class="leg"><div class="leg-box" style="background:#E8F5E9;border:2px solid var(--green)"></div>New Element</div>
+</div>
+
+<div class="canvas">
+
+  <!-- ══════════════════════════════════════
+       SECTION 1 — WIREFLOW (3 SCREENS)
+  ══════════════════════════════════════ -->
+  <div>
+    <div class="sec-label">01 — Wireflow · Login → Home KRS → Pengisian KRS</div>
+
+    <div class="wireflow-row">
+
+      <!-- ── SCREEN 1: LOGIN ── -->
+      <div class="phone-wrap">
+        <div><span class="screen-num">1</span><span class="phone-screen-label">Login</span></div>
+        <div class="phone">
+          <div class="p-statusbar">
+            <span>10:46</span><span>4G+ ▮▮▮ 75%</span>
+          </div>
+          <div class="p-urlbar">
+            <div class="p-url">krs.ipb.ac.id/login</div>
+          </div>
+
+          <div class="p-login-body">
+            <div class="p-login-logo">
+              <div class="logo-box">KRS Online</div>
+              <div class="logo-sub">IPB University · Sistem Akademik</div>
+            </div>
+
+            <div class="p-field">
+              <label>Username / NIM</label>
+              <div class="p-field-box filled">M0403241060</div>
+            </div>
+
+            <div class="p-field">
+              <label>Password</label>
+              <div class="p-field-box filled">••••••••••</div>
+            </div>
+
+            <div class="p-login-btn">→ Masuk / Login</div>
+
+            <div class="p-login-note">Kesulitan login? Hubungi helpcenter.ipb.ac.id</div>
+
+            <!-- error state hint -->
+            <div style="background:#FDECEA;border:1px solid #F5B4AE;border-radius:3px;padding:5px 8px;font-size:8px;color:var(--accent2);display:flex;gap:5px;align-items:flex-start;">
+              <span>⚠</span>
+              <span><strong>[Alt Path]</strong> Jika login gagal → tampil pesan error + tombol "Coba Lagi"</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── CONNECTOR 1→2 ── -->
+      <div class="flow-connector">
+        <div class="flow-action">Klik "Masuk"</div>
+        <div class="arrow-line"></div>
+        <div class="flow-label">Login<br>Berhasil</div>
+      </div>
+
+      <!-- ── SCREEN 2: HOME KRS (UPDATED) ── -->
+      <div class="phone-wrap">
+        <div><span class="screen-num">2</span><span class="phone-screen-label">Home KRS</span></div>
+        <div class="phone">
+          <div class="p-statusbar">
+            <span>10:46</span><span>4G+ ▮▮▮ 75%</span>
+          </div>
+          <div class="p-urlbar">
+            <div class="p-url">krs.ipb.ac.id</div>
+          </div>
+          <div class="p-nav">
+            <div class="site-id">KRS Online<br>NAZWA NADYA RAHMA</div>
+            <div class="nav-links">
+              <span class="p-navlink">Beranda</span>
+              <span class="p-navlink">Aktivitas</span>
+              <span class="p-navlink">Rencana</span>
+            </div>
+          </div>
+
+          <div class="p-body">
+            <!-- HERO -->
+            <div class="p-hero">
+              <div class="badge">KKNT 6 Jul – 14 Agt 2026</div>
+              <h3>KRS KKNT periode pelaksanaan<br>6 Juli – 14 Agustus 2026</h3>
+              <p>Pengisian KRS dibuka 9 Feb 2026 pkl 09.00 s/d 13 Feb 2026 pkl 16.00</p>
+            </div>
+
+            <!-- ★ NEW: STATUS AKADEMIK -->
+            <div class="p-status-strip">
+              <div class="p-status-dot"></div>
+              <div>
+                <div class="p-status-text">✓ Aktif — Semester Genap 2025/2026</div>
+                <div style="font-size:7px;color:#388E3C;">SPP: Lunas · Perwalian: Selesai</div>
+              </div>
+              <div class="p-status-sub">Status OK</div>
+            </div>
+
+            <!-- ★ NEW: BATAS SKS -->
+            <div style="padding:5px 10px;background:#FFF3E0;border-bottom:1.5px solid #FFCC80;">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:3px;">
+                <span class="p-sks-label">📊 Batas SKS Semester Ini</span>
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;color:#BF360C;">0 / <span style="color:#E65100;">24 SKS</span></span>
+              </div>
+              <div class="p-sks-progress-wrap">
+                <div class="p-sks-progress-fill" style="width:0%"></div>
+              </div>
+              <div style="font-size:7px;color:#BF360C;margin-top:2px;">Sisa kuota: 24 SKS · IP Semester: — (menunggu)</div>
+            </div>
+
+            <!-- DATA + ANNOUNCE -->
+            <div class="p-two-col">
+              <div class="p-data-col">
+                <div class="col-h">👤 Data Mahasiswa</div>
+                <div class="p-data-row">
+                  <div class="lbl">Nama</div>
+                  <div class="val">NAZWA NADYA RAHMA</div>
+                </div>
+                <div class="p-data-row">
+                  <div class="lbl">NIM</div>
+                  <div class="val">M0403241060</div>
+                </div>
+                <div class="p-data-row">
+                  <div class="lbl">Prodi</div>
+                  <div class="val">Ilmu Komputer</div>
+                </div>
+                <div class="p-data-row">
+                  <div class="lbl">Semester</div>
+                  <div class="val">5 (Alih Tahun)</div>
+                </div>
+                <!-- ★ NEW: CEK BIODATA BUTTON -->
+                <div class="p-biodata-btn">
+                  🔍 Cek Biodata
+                </div>
+              </div>
+
+              <div class="p-ann-col">
+                <div class="p-ann-h">📢 Pengumuman</div>
+                <div class="p-ann-item">
+                  <div class="p-ann-num">1</div>
+                  <div class="p-ann-text"><span class="hi">Uji Coba KRS</span> 8–9 Jan 2026</div>
+                </div>
+                <div class="p-ann-item">
+                  <div class="p-ann-num">2</div>
+                  <div class="p-ann-text">Bayar SPP: <span class="hir">29 Des–7 Jan</span></div>
+                </div>
+                <div class="p-ann-item">
+                  <div class="p-ann-num">3</div>
+                  <div class="p-ann-text">Perwalian Thn I: <span class="hi">5–13 Jan</span></div>
+                </div>
+                <div class="p-ann-item">
+                  <div class="p-ann-num">4</div>
+                  <div class="p-ann-text">KRS A: <span class="hi">13 Jan 2026</span></div>
+                </div>
+                <div class="p-ann-item">
+                  <div class="p-ann-num">5</div>
+                  <div class="p-ann-text">MK SC/EC: <span class="hi">14 Jan</span></div>
+                </div>
+                <div class="p-more">+10 poin lainnya ↓</div>
+              </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="p-cta">
+              <div class="p-cta-btn">✏ Isi KRS</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── CONNECTOR 2→3 ── -->
+      <div class="flow-connector">
+        <div class="flow-action">Klik "Isi KRS"</div>
+        <div class="arrow-line"></div>
+        <div class="flow-label">Lanjut ke<br>Pengisian</div>
+      </div>
+
+      <!-- ── SCREEN 3: PENGISIAN KRS ── -->
+      <div class="phone-wrap">
+        <div><span class="screen-num">3</span><span class="phone-screen-label">Pengisian KRS</span></div>
+        <div class="phone">
+          <div class="p-statusbar">
+            <span>10:47</span><span>4G+ ▮▮▮ 75%</span>
+          </div>
+          <div class="p-urlbar">
+            <div class="p-url">krs.ipb.ac.id/pengisian</div>
+          </div>
+          <div class="p-nav">
+            <div class="site-id">Pengisian KRS<br>Semester Genap 2025/2026</div>
+            <div class="nav-links">
+              <span class="p-navlink">← Home</span>
+            </div>
+          </div>
+
+          <div class="p-body">
+            <!-- subheader -->
+            <div class="p-krs-subheader">
+              <span class="krs-title">📋 Pilih Mata Kuliah</span>
+              <span class="krs-sem">Ganjil 2025/2026</span>
+            </div>
+
+            <!-- SKS summary -->
+            <div class="p-krs-sks-summary">
+              <div class="p-krs-sks-box">
+                <div class="sks-n">6</div>
+                <div class="sks-lbl">SKS dipilih</div>
+              </div>
+              <div class="p-krs-sks-divider"></div>
+              <div class="p-krs-sks-max">
+                Maks <strong>24</strong> SKS<br>
+                <span style="color:#388E3C;font-weight:700;">Sisa: 18 SKS</span>
+              </div>
+              <div style="margin-left:auto;background:#E8F5E9;border:1px solid #A5D6A7;border-radius:3px;padding:3px 7px;font-size:8px;color:#2E7D32;font-family:'IBM Plex Mono',monospace;">
+                ✓ Jadwal OK
+              </div>
+            </div>
+
+            <!-- filter pills -->
+            <div class="p-krs-filter">
+              <div class="p-krs-filter-pill active">Semua</div>
+              <div class="p-krs-filter-pill">Wajib</div>
+              <div class="p-krs-filter-pill">Pilihan</div>
+              <div class="p-krs-filter-pill">SC/EC</div>
+            </div>
+
+            <!-- MK list -->
+            <div class="p-mk-list">
+
+              <div class="p-mk-item selected">
+                <div class="p-mk-check checked"></div>
+                <div class="p-mk-info">
+                  <div class="mk-code">KOM301</div>
+                  <div class="mk-name">Interaksi Manusia Komputer</div>
+                  <div class="mk-meta">Sel 08.00–10.30 · R.CC1</div>
+                </div>
+                <div class="p-mk-sks taken">3 SKS</div>
+              </div>
+
+              <div class="p-mk-item selected">
+                <div class="p-mk-check checked"></div>
+                <div class="p-mk-info">
+                  <div class="mk-code">KOM302</div>
+                  <div class="mk-name">Rekayasa Perangkat Lunak</div>
+                  <div class="mk-meta">Rab 10.00–12.30 · R.CC2</div>
+                </div>
+                <div class="p-mk-sks taken">3 SKS</div>
+              </div>
+
+              <div class="p-mk-item">
+                <div class="p-mk-check"></div>
+                <div class="p-mk-info">
+                  <div class="mk-code">KOM303</div>
+                  <div class="mk-name">Basis Data Lanjut</div>
+                  <div class="mk-meta">Kam 08.00–10.30 · R.CC3</div>
+                </div>
+                <div class="p-mk-sks">3 SKS</div>
+              </div>
+
+              <div class="p-mk-item">
+                <div class="p-mk-check"></div>
+                <div class="p-mk-info">
+                  <div class="mk-code">KOM304</div>
+                  <div class="mk-name">Kecerdasan Buatan</div>
+                  <div class="mk-meta">Jum 10.00–12.30 · R.CC1</div>
+                </div>
+                <div class="p-mk-sks">3 SKS</div>
+              </div>
+
+              <div style="font-size:8px;color:var(--mid);text-align:center;padding:4px;font-style:italic;">↓ scroll untuk lebih banyak MK</div>
+            </div>
+
+            <!-- save actions -->
+            <div class="p-krs-save">
+              <div class="p-krs-save-btn outline">Simpan Draft</div>
+              <div class="p-krs-save-btn">✔ Simpan KRS</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end wireflow-row -->
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SECTION 2 — ANNOTATIONS
+  ══════════════════════════════════════ -->
+  <div>
+    <div class="sec-label">02 — Anotasi UX per Screen</div>
+    <div class="anno-row">
+
+      <!-- Screen 1 annotations -->
+      <div class="anno-card">
+        <div class="anno-card-head">
+          <span class="zone">SCR 1</span>Login Page
+        </div>
+        <div class="anno-card-body">
+          <div class="anno-item">
+            <div class="a-dot g">+</div>
+            <div><span class="tag-good">GOOD</span> Form sederhana, hanya 2 field → cognitive load minimal.</div>
+          </div>
+          <div class="anno-item">
+            <div class="a-dot r">!</div>
+            <div><span class="tag-bad">ISSUE</span> Tidak ada indikator "Lupa Password" yang jelas — pengguna panik ketika lupa.</div>
+          </div>
+          <div class="anno-item">
+            <div class="a-dot b">i</div>
+            <div>Alt Path: Login gagal → tampilkan pesan error spesifik (bukan generic "salah username/password").</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Screen 2 annotations -->
+      <div class="anno-card">
+        <div class="anno-card-head">
+          <span class="zone" style="background:var(--green)">SCR 2</span>Home KRS (Updated)
+        </div>
+        <div class="anno-card-body">
+          <div class="anno-item">
+            <div class="a-dot g">★</div>
+            <div><span class="tag-good">NEW</span> <strong>Status Akademik strip</strong> — konfirmasi visual bahwa SPP lunas + perwalian selesai sebelum isi KRS.</div>
+          </div>
+          <div class="anno-item">
+            <div class="a-dot g">★</div>
+            <div><span class="tag-good">NEW</span> <strong>Batas SKS bar</strong> dengan progress bar — pengguna tahu kuota sebelum memilih MK, mengurangi error.</div>
+          </div>
+          <div class="anno-item">
+            <div class="a-dot g">★</div>
+            <div><span class="tag-good">NEW</span> <strong>Tombol "Cek Biodata"</strong> di panel Data Mahasiswa — akses cepat verifikasi data diri tanpa navigasi panjang.</div>
+          </div>
+          <div class="anno-item">
+            <div class="a-dot y">!</div>
+            <div><span class="tag-bad">ISSUE</span> 15 poin pengumuman masih tanpa prioritas → rekomenasi: badge KRITIS / PENTING / INFO.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Screen 3 annotations -->
+      <div class="anno-card">
+        <div class="anno-card-head">
+          <span class="zone">SCR 3</span>Pengisian KRS
+        </div>
+        <div class="anno-card-body">
+          <div class="anno-item">
+            <div class="a-dot g">+</div>
+            <div><span class="tag-good">GOOD</span> SKS counter real-time di atas list MK → pengguna selalu tahu sisa kuota saat memilih.</div>
+          </div>
+          <div class="anno-item">
+            <div class="a-dot g">+</div>
+            <div><span class="tag-good">GOOD</span> Filter pill (Semua/Wajib/Pilihan/SC-EC) membantu navigasi list MK panjang.</div>
+          </div>
+          <div class="anno-item">
+            <div class="a-dot b">i</div>
+            <div>Dual action: "Simpan Draft" vs "Simpan KRS" — mencegah data hilang jika tiba-tiba keluar halaman.</div>
+          </div>
+          <div class="anno-item">
+            <div class="a-dot r">!</div>
+            <div><span class="tag-bad">ISSUE</span> Potensi konflik jadwal tidak terdeteksi di wireframe ini — perlu validasi real-time atau warning.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SECTION 3 — USER FLOW DIAGRAM
+  ══════════════════════════════════════ -->
+  <div>
+    <div class="sec-label">03 — User Flow · Login → Home KRS → Pengisian KRS</div>
+    <div class="uf-wrap">
+      <div class="uf-head">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#fff" stroke-width="1.5"/><path d="M4.5 7h5M7 4.5v5" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Full User Flow Diagram
+        <span style="margin-left:auto;font-size:9px;opacity:0.5">Biru = Happy Path · Merah = Error/Alt · Putus = Optional</span>
+      </div>
+      <div class="uf-svg-wrap">
+        <svg width="1060" height="420" viewBox="0 0 1060 420" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="ah" markerWidth="8" markerHeight="6" refX="6" refY="3" orient="auto">
+              <polygon points="0 0,8 3,0 6" fill="#1A56DB"/>
+            </marker>
+            <marker id="ahr" markerWidth="8" markerHeight="6" refX="6" refY="3" orient="auto">
+              <polygon points="0 0,8 3,0 6" fill="#D93025"/>
+            </marker>
+            <marker id="ahg" markerWidth="8" markerHeight="6" refX="6" refY="3" orient="auto">
+              <polygon points="0 0,8 3,0 6" fill="#1E7E34"/>
+            </marker>
+          </defs>
+
+          <!-- ── ROW 1 y=70 ── -->
+
+          <!-- START -->
+          <ellipse cx="52" cy="70" rx="42" ry="22" fill="#181818"/>
+          <text x="52" y="75" text-anchor="middle" fill="#fff" font-size="11" font-weight="700" font-family="IBM Plex Sans,sans-serif">START</text>
+
+          <line x1="94" y1="70" x2="122" y2="70" stroke="#1A56DB" stroke-width="2" marker-end="url(#ah)"/>
+
+          <!-- Login Page box -->
+          <rect x="124" y="48" width="120" height="44" rx="4" fill="#EEF2FF" stroke="#1A56DB" stroke-width="2"/>
+          <text x="184" y="67" text-anchor="middle" fill="#181818" font-size="11" font-weight="600" font-family="IBM Plex Sans,sans-serif">Login Page</text>
+          <text x="184" y="82" text-anchor="middle" fill="#6B6B6B" font-size="9" font-family="IBM Plex Sans,sans-serif">krs.ipb.ac.id/login</text>
+
+          <line x1="244" y1="70" x2="272" y2="70" stroke="#1A56DB" stroke-width="2" marker-end="url(#ah)"/>
+
+          <!-- Input user+pass -->
+          <rect x="274" y="48" width="120" height="44" rx="4" fill="#fff" stroke="#181818" stroke-width="2"/>
+          <text x="334" y="67" text-anchor="middle" fill="#181818" font-size="11" font-weight="600" font-family="IBM Plex Sans,sans-serif">Input Kredensial</text>
+          <text x="334" y="82" text-anchor="middle" fill="#6B6B6B" font-size="9" font-family="IBM Plex Sans,sans-serif">NIM + Password</text>
+
+          <line x1="394" y1="70" x2="422" y2="70" stroke="#1A56DB" stroke-width="2" marker-end="url(#ah)"/>
+
+          <!-- Decision: login ok? -->
+          <polygon points="480,40 530,70 480,100 430,70" fill="#F4C430" stroke="#181818" stroke-width="2"/>
+          <text x="480" y="67" text-anchor="middle" fill="#181818" font-size="10" font-weight="700" font-family="IBM Plex Sans,sans-serif">Login</text>
+          <text x="480" y="80" text-anchor="middle" fill="#181818" font-size="10" font-weight="700" font-family="IBM Plex Sans,sans-serif">Berhasil?</text>
+
+          <!-- YES → -->
+          <line x1="530" y1="70" x2="558" y2="70" stroke="#1A56DB" stroke-width="2" marker-end="url(#ah)"/>
+          <text x="542" y="64" text-anchor="middle" fill="#1E7E34" font-size="10" font-family="IBM Plex Mono,monospace">Ya</text>
+
+          <!-- Home KRS page -->
+          <rect x="560" y="48" width="140" height="44" rx="4" fill="#EEF2FF" stroke="#1A56DB" stroke-width="2"/>
+          <text x="630" y="67" text-anchor="middle" fill="#181818" font-size="11" font-weight="600" font-family="IBM Plex Sans,sans-serif">Home KRS</text>
+          <text x="630" y="82" text-anchor="middle" fill="#6B6B6B" font-size="9" font-family="IBM Plex Sans,sans-serif">Status · SKS · Biodata · Pengumuman</text>
+
+          <!-- ── SIDE ACTIONS on Home KRS, y=150-220 ── -->
+          <!-- down from Home KRS -->
+          <line x1="630" y1="92" x2="630" y2="148" stroke="#1A56DB" stroke-width="2" marker-end="url(#ah)"/>
+
+          <!-- 3 action nodes from Home -->
+          <!-- Cek Status Akademik -->
+          <rect x="500" y="150" width="120" height="36" rx="3" fill="#E8F5E9" stroke="#1E7E34" stroke-width="2"/>
+          <text x="560" y="165" text-anchor="middle" fill="#1E7E34" font-size="10" font-weight="600" font-family="IBM Plex Sans,sans-serif">Cek Status</text>
+          <text x="560" y="178" text-anchor="middle" fill="#1E7E34" font-size="9" font-family="IBM Plex Sans,sans-serif">Akademik ★</text>
+
+          <!-- Cek Biodata -->
+          <rect x="630" y="150" width="120" height="36" rx="3" fill="#E8F5E9" stroke="#1E7E34" stroke-width="2"/>
+          <text x="690" y="165" text-anchor="middle" fill="#1E7E34" font-size="10" font-weight="600" font-family="IBM Plex Sans,sans-serif">Cek Biodata ★</text>
+          <text x="690" y="178" text-anchor="middle" fill="#1E7E34" font-size="9" font-family="IBM Plex Sans,sans-serif">Nama · NIM · Prodi</text>
+
+          <!-- Baca Pengumuman -->
+          <rect x="760" y="150" width="120" height="36" rx="3" fill="#fff" stroke="#181818" stroke-width="2"/>
+          <text x="820" y="165" text-anchor="middle" fill="#181818" font-size="10" font-weight="600" font-family="IBM Plex Sans,sans-serif">Baca</text>
+          <text x="820" y="178" text-anchor="middle" fill="#181818" font-size="9" font-family="IBM Plex Sans,sans-serif">Pengumuman</text>
+
+          <!-- arrows Home → 3 nodes -->
+          <line x1="600" y1="148" x2="570" y2="148" stroke="#1A56DB" stroke-width="1.5" stroke-dasharray="4,2"/>
+          <line x1="570" y1="148" x2="570" y2="148" stroke="#1A56DB" stroke-width="1.5" marker-end="url(#ah)"/>
+
+          <line x1="660" y1="148" x2="690" y2="148" stroke="#1A56DB" stroke-width="1.5" stroke-dasharray="4,2"/>
+          <line x1="690" y1="148" x2="690" y2="148" stroke="#1A56DB" stroke-width="1.5" marker-end="url(#ah)"/>
+
+          <line x1="700" y1="126" x2="820" y2="126" stroke="#1A56DB" stroke-width="1.5" stroke-dasharray="4,2"/>
+          <line x1="820" y1="126" x2="820" y2="148" stroke="#1A56DB" stroke-width="1.5" marker-end="url(#ah)"/>
+
+          <!-- Batas SKS check -->
+          <rect x="500" y="215" width="120" height="36" rx="3" fill="#FFF3E0" stroke="#E65100" stroke-width="2"/>
+          <text x="560" y="230" text-anchor="middle" fill="#E65100" font-size="10" font-weight="600" font-family="IBM Plex Sans,sans-serif">Lihat Batas</text>
+          <text x="560" y="243" text-anchor="middle" fill="#E65100" font-size="9" font-family="IBM Plex Sans,sans-serif">SKS ★ (0/24)</text>
+
+          <line x1="560" y1="186" x2="560" y2="213" stroke="#1A56DB" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#ah)"/>
+
+          <!-- Decision: Ready isi KRS? -->
+          <polygon points="700,270 755,300 700,330 645,300" fill="#F4C430" stroke="#181818" stroke-width="2"/>
+          <text x="700" y="297" text-anchor="middle" fill="#181818" font-size="9" font-weight="700" font-family="IBM Plex Sans,sans-serif">Siap</text>
+          <text x="700" y="310" text-anchor="middle" fill="#181818" font-size="9" font-weight="700" font-family="IBM Plex Sans,sans-serif">Isi KRS?</text>
+
+          <!-- all 3 actions → decision -->
+          <line x1="560" y1="251" x2="560" y2="280" stroke="#1A56DB" stroke-width="1.5" stroke-dasharray="4,2"/>
+          <line x1="560" y1="280" x2="643" y2="298" stroke="#1A56DB" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#ah)"/>
+
+          <line x1="690" y1="186" x2="690" y2="268" stroke="#1A56DB" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#ah)"/>
+          <line x1="820" y1="186" x2="820" y2="280" stroke="#1A56DB" stroke-width="1.5" stroke-dasharray="4,2"/>
+          <line x1="820" y1="280" x2="757" y2="298" stroke="#1A56DB" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#ah)"/>
+
+          <!-- CTA: Klik Isi KRS -->
+          <rect x="630" y="350" width="140" height="36" rx="18" fill="#1A56DB" stroke="#181818" stroke-width="2"/>
+          <text x="700" y="373" text-anchor="middle" fill="#fff" font-size="11" font-weight="700" font-family="IBM Plex Sans,sans-serif">✏ Klik "Isi KRS"</text>
+
+          <!-- YES → CTA -->
+          <line x1="700" y1="330" x2="700" y2="348" stroke="#1A56DB" stroke-width="2" marker-end="url(#ah)"/>
+          <text x="710" y="342" fill="#1E7E34" font-size="10" font-family="IBM Plex Mono,monospace">Ya</text>
+
+          <!-- NO → back Home -->
+          <line x1="645" y1="300" x2="580" y2="300" stroke="#D93025" stroke-width="1.5" stroke-dasharray="5,3"/>
+          <path d="M580 300 Q550 300 550 250 Q550 200 590 185" stroke="#D93025" stroke-width="1.5" stroke-dasharray="5,3" fill="none" marker-end="url(#ahr)"/>
+          <text x="560" y="320" fill="#D93025" font-size="9" font-family="IBM Plex Mono,monospace">Tidak</text>
+          <text x="540" y="340" fill="#D93025" font-size="8" font-family="IBM Plex Mono,monospace">kembali baca</text>
+
+          <!-- Pengisian KRS screen -->
+          <rect x="860" y="270" width="150" height="44" rx="4" fill="#EEF2FF" stroke="#1A56DB" stroke-width="2"/>
+          <text x="935" y="288" text-anchor="middle" fill="#181818" font-size="11" font-weight="600" font-family="IBM Plex Sans,sans-serif">Pengisian KRS</text>
+          <text x="935" y="303" text-anchor="middle" fill="#6B6B6B" font-size="9" font-family="IBM Plex Sans,sans-serif">Pilih MK · Cek SKS · Simpan</text>
+
+          <!-- CTA → Pengisian KRS -->
+          <line x1="770" y1="368" x2="858" y2="295" stroke="#1A56DB" stroke-width="2" marker-end="url(#ah)"/>
+
+          <!-- Decision: simpan? -->
+          <polygon points="935,340 975,365 935,390 895,365" fill="#F4C430" stroke="#181818" stroke-width="2"/>
+          <text x="935" y="363" text-anchor="middle" fill="#181818" font-size="9" font-weight="700" font-family="IBM Plex Sans,sans-serif">Simpan</text>
+          <text x="935" y="374" text-anchor="middle" fill="#181818" font-size="9" font-weight="700" font-family="IBM Plex Sans,sans-serif">KRS?</text>
+
+          <line x1="935" y1="314" x2="935" y2="338" stroke="#1A56DB" stroke-width="2" marker-end="url(#ah)"/>
+
+          <!-- END -->
+          <ellipse cx="1010" cy="365" rx="40" ry="22" fill="#1A56DB"/>
+          <text x="1010" y="370" text-anchor="middle" fill="#fff" font-size="11" font-weight="700" font-family="IBM Plex Sans,sans-serif">END</text>
+
+          <line x1="975" y1="365" x2="968" y2="365" stroke="#1A56DB" stroke-width="2" marker-end="url(#ah)"/>
+          <text x="968" y="358" fill="#1E7E34" font-size="9" font-family="IBM Plex Mono,monospace">Ya</text>
+
+          <!-- ERROR LOGIN -->
+          <rect x="420" y="148" width="112" height="36" rx="3" fill="#FDECEA" stroke="#D93025" stroke-width="2"/>
+          <text x="476" y="163" text-anchor="middle" fill="#D93025" font-size="10" font-weight="600" font-family="IBM Plex Sans,sans-serif">Error Login</text>
+          <text x="476" y="176" text-anchor="middle" fill="#D93025" font-size="9" font-family="IBM Plex Sans,sans-serif">Pesan error + retry</text>
+
+          <!-- NO login → error -->
+          <line x1="480" y1="100" x2="480" y2="146" stroke="#D93025" stroke-width="2" marker-end="url(#ahr)"/>
+          <text x="491" y="126" fill="#D93025" font-size="9" font-family="IBM Plex Mono,monospace">Tidak</text>
+
+          <!-- error → back to input -->
+          <path d="M420 166 Q380 166 380 70 Q380 60 392 60" stroke="#D93025" stroke-width="1.5" stroke-dasharray="5,3" fill="none" marker-end="url(#ahr)"/>
+          <text x="365" y="110" fill="#D93025" font-size="8" font-family="IBM Plex Mono,monospace" transform="rotate(-90,365,110)">retry</text>
+
+          <!-- ★ NEW labels -->
+          <rect x="498" y="140" width="16" height="14" rx="2" fill="#1E7E34"/>
+          <text x="506" y="151" text-anchor="middle" fill="#fff" font-size="9" font-family="IBM Plex Mono,monospace">★</text>
+          <rect x="628" y="140" width="16" height="14" rx="2" fill="#1E7E34"/>
+          <text x="636" y="151" text-anchor="middle" fill="#fff" font-size="9" font-family="IBM Plex Mono,monospace">★</text>
+          <rect x="498" y="205" width="16" height="14" rx="2" fill="#E65100"/>
+          <text x="506" y="216" text-anchor="middle" fill="#fff" font-size="9" font-family="IBM Plex Mono,monospace">★</text>
+
+          <!-- legend note -->
+          <rect x="20" y="380" width="10" height="10" rx="1" fill="#1E7E34"/>
+          <text x="35" y="390" fill="#1E7E34" font-size="9" font-family="IBM Plex Mono,monospace">★ Elemen baru ditambahkan</text>
+          <rect x="200" y="380" width="10" height="10" rx="1" fill="#1A56DB"/>
+          <text x="215" y="390" fill="#1A56DB" font-size="9" font-family="IBM Plex Mono,monospace">──── Happy Path</text>
+          <text x="380" y="390" fill="#D93025" font-size="9" font-family="IBM Plex Mono,monospace">- - - Error / Alt Path</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end canvas -->
+
+<footer>
+  <span>Wireflow v2 · KRS IPB · krs.ipb.ac.id</span>
+  <span>Nazwa Nadya Rahma · M0403241060 · Ilmu Komputer · IPB</span>
+  <span>HCI Week 10 — Task: Login → Home KRS → Pengisian KRS</span>
+</footer>
+
+</body>
+</html>
