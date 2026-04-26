@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Wireframe KRS Online — IPB</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #f2f0eb;
+    font-family: 'IBM Plex Sans', sans-serif;
+    padding: 40px 24px 60px;
+    min-height: 100vh;
+  }
+
+  /* ── Page header ── */
+  .page-header {
+    text-align: center;
+    margin-bottom: 36px;
+  }
+  .page-header h1 {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #444;
+    border: 1.5px solid #bbb;
+    display: inline-block;
+    padding: 6px 18px;
+    border-radius: 2px;
+  }
+  .page-header p {
+    margin-top: 8px;
+    font-size: 11px;
+    color: #888;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── Screen row ── */
+  .screen-row {
+    display: flex;
+    gap: 28px;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .screen-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .screen-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    font-weight: 500;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-align: center;
+    line-height: 1.5;
+  }
+  .screen-label .num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 17px; height: 17px;
+    background: #111;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 9px;
+    font-weight: 500;
+    margin-right: 3px;
+    vertical-align: middle;
+  }
+
+  /* ── Phone frame ── */
+  .phone {
+    width: 174px;
+    border: 2px solid #111;
+    border-radius: 24px;
+    overflow: hidden;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Status bar */
+  .statusbar {
+    background: #111;
+    padding: 5px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .statusbar-time {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    color: #ccc;
+    letter-spacing: 0.05em;
+  }
+  .statusbar-icons {
+    display: flex;
+    gap: 3px;
+    align-items: center;
+  }
+  .statusbar-icons span {
+    font-size: 7px;
+    color: #aaa;
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* Address bar */
+  .addr-bar {
+    background: #f0f0ee;
+    margin: 5px 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 3px 7px;
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    color: #666;
+  }
+
+  /* Navbar */
+  .navbar {
+    background: #f7f6f3;
+    border-bottom: 1px solid #ddd;
+    padding: 5px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px;
+  }
+  .navbar-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+  .navbar-brand .brand-name {
+    font-size: 7.5px;
+    font-weight: 600;
+    color: #222;
+    letter-spacing: 0.02em;
+  }
+  .navbar-brand .brand-user {
+    font-size: 6.5px;
+    color: #666;
+    font-family: 'DM Mono', monospace;
+  }
+  .navbar-links {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+  }
+  .nav-pill {
+    font-size: 7px;
+    color: #444;
+    background: #e8e8e4;
+    border: 0.5px solid #bbb;
+    border-radius: 2px;
+    padding: 2px 5px;
+    font-family: 'DM Mono', monospace;
+    white-space: nowrap;
+  }
+  .nav-pill.logout {
+    background: #fff;
+    border: 1px solid #999;
+    color: #333;
+  }
+
+  /* Hero banner */
+  .hero {
+    background: #e8e8e4;
+    border-bottom: 1.5px dashed #bbb;
+    padding: 8px 10px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 4px,
+      rgba(0,0,0,0.03) 4px,
+      rgba(0,0,0,0.03) 5px
+    );
+    pointer-events: none;
+  }
+  .hero-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 7px;
+    color: #888;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  .hero-title {
+    font-size: 9px;
+    font-weight: 600;
+    color: #111;
+    line-height: 1.3;
+    margin-bottom: 2px;
+  }
+  .hero-sub {
+    font-size: 8.5px;
+    font-weight: 600;
+    color: #111;
+  }
+  .hero-caption {
+    font-family: 'DM Mono', monospace;
+    font-size: 6.5px;
+    color: #777;
+    line-height: 1.4;
+    margin-top: 3px;
+  }
+
+  /* Status section */
+  .status-section {
+    padding: 6px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .status-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px;
+    padding: 3px 4px;
+    border-radius: 2px;
+  }
+  .status-row.active {
+    background: #f0f0ee;
+    border: 0.5px solid #ccc;
+  }
+  .status-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .dot-empty { background: #fff; border: 1.5px solid #999; }
+  .dot-yellow { background: #f0f0ee; border: 1.5px solid #888; }
+  .dot-bar { width: 7px; height: 7px; border-radius: 1px; background: #f0f0ee; border: 1.5px solid #888; }
+  .dot-check {
+    width: 7px; height: 7px;
+    background: #333;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .dot-check::after {
+    content: '✓';
+    font-size: 5px;
+    color: #fff;
+    line-height: 1;
+  }
+  .status-label {
+    flex: 1;
+    font-size: 7px;
+    color: #333;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .status-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 6.5px;
+    padding: 1px 5px;
+    border-radius: 2px;
+    border: 1px solid #999;
+    color: #555;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .status-badge.ok {
+    background: #e8e8e4;
+    border-color: #888;
+    color: #333;
+    font-weight: 500;
+  }
+  .status-badge.acc {
+    background: #333;
+    border-color: #111;
+    color: #fff;
+    font-weight: 500;
+  }
+  .btn-cek {
+    font-family: 'DM Mono', monospace;
+    font-size: 6.5px;
+    padding: 2px 6px;
+    border: 1.5px solid #333;
+    border-radius: 2px;
+    background: #fff;
+    color: #111;
+    white-space: nowrap;
+    flex-shrink: 0;
+    font-weight: 500;
+  }
+  .btn-cek.filled {
+    background: #333;
+    color: #fff;
+  }
+
+  /* SKS row expanded */
+  .sks-expanded {
+    padding: 4px 8px;
+    background: #f7f6f3;
+    border-top: 0.5px solid #ddd;
+    border-bottom: 0.5px solid #ddd;
+    margin: 0;
+  }
+  .sks-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 3px;
+  }
+  .sks-label {
+    font-size: 7px;
+    color: #444;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+  }
+  .sks-label .bar-icon {
+    width: 6px; height: 6px; border-radius: 1px; border: 1px solid #777;
+  }
+  .sks-count {
+    font-family: 'DM Mono', monospace;
+    font-size: 7px;
+    font-weight: 500;
+    color: #c44;
+  }
+  .sks-bar-track {
+    height: 4px;
+    background: #ddd;
+    border-radius: 2px;
+    border: 0.5px solid #ccc;
+    overflow: hidden;
+  }
+  .sks-bar-fill {
+    height: 100%;
+    background: #555;
+    border-radius: 2px;
+  }
+  .sks-note {
+    font-family: 'DM Mono', monospace;
+    font-size: 6px;
+    color: #888;
+    margin-top: 2px;
+  }
+
+  /* Divider */
+  .divider {
+    height: 1px;
+    background: #ddd;
+    margin: 2px 8px;
+  }
+
+  /* Two col bottom */
+  .two-col {
+    display: flex;
+    gap: 0;
+    border-top: 1px solid #ddd;
+    flex: 1;
+  }
+  .col-left {
+    width: 50%;
+    border-right: 1px solid #ddd;
+    padding: 5px 6px;
+  }
+  .col-right {
+    width: 50%;
+    padding: 5px 6px;
+  }
+  .col-header {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    margin-bottom: 4px;
+    padding-bottom: 3px;
+    border-bottom: 0.5px solid #e0e0e0;
+  }
+  .col-header-icon {
+    width: 8px; height: 8px;
+    border: 1px solid #888;
+    border-radius: 1px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .col-header-icon.round { border-radius: 50%; }
+  .col-header-icon span { font-size: 5px; }
+  .col-header-text {
+    font-size: 7.5px;
+    font-weight: 600;
+    color: #222;
+    letter-spacing: 0.02em;
+  }
+
+  /* Biodata button */
+  .btn-biodata {
+    width: 100%;
+    padding: 4px 0;
+    font-size: 7px;
+    font-family: 'DM Mono', monospace;
+    border: 1.5px solid #555;
+    border-radius: 2px;
+    background: #fff;
+    color: #333;
+    text-align: center;
+    display: flex; align-items: center; justify-content: center; gap: 2px;
+  }
+  .btn-biodata span { font-size: 7px; }
+
+  /* Biodata info card */
+  .biodata-card {
+    background: #f0f0ee;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    padding: 5px 6px;
+  }
+  .bio-name {
+    font-size: 8px;
+    font-weight: 600;
+    color: #111;
+    line-height: 1.3;
+    margin-bottom: 3px;
+    padding-bottom: 3px;
+    border-bottom: 0.5px solid #ccc;
+  }
+  .bio-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 2px;
+  }
+  .bio-key {
+    font-family: 'DM Mono', monospace;
+    font-size: 6px;
+    color: #888;
+  }
+  .bio-val {
+    font-family: 'DM Mono', monospace;
+    font-size: 6.5px;
+    color: #333;
+    font-weight: 500;
+    text-align: right;
+  }
+
+  /* Announcement list */
+  .annc-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 3px;
+    margin-bottom: 3px;
+  }
+  .annc-num {
+    width: 8px; height: 8px;
+    background: #e0e0e0;
+    border: 0.5px solid #ccc;
+    border-radius: 1px;
+    font-family: 'DM Mono', monospace;
+    font-size: 5.5px;
+    color: #555;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .annc-text {
+    font-size: 6.5px;
+    color: #333;
+    line-height: 1.35;
+    flex: 1;
+  }
+  .annc-text .highlight { color: #c00; font-weight: 500; }
+  .annc-more {
+    font-family: 'DM Mono', monospace;
+    font-size: 6px;
+    color: #888;
+    text-align: center;
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+  }
+
+  /* Bottom bar */
+  .phone-footer {
+    background: #f7f6f3;
+    border-top: 1.5px solid #ccc;
+    padding: 6px 8px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .btn-isi-krs {
+    flex: 1;
+    background: #111;
+    color: #fff;
+    font-size: 8px;
+    font-weight: 600;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.06em;
+    text-align: center;
+    padding: 6px 0;
+    border-radius: 4px;
+    border: none;
+  }
+  .btn-chat {
+    width: 26px; height: 26px;
+    background: #e0e0dc;
+    border: 1.5px solid #bbb;
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px;
+    flex-shrink: 0;
+  }
+  .home-indicator {
+    height: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .home-bar {
+    width: 40px; height: 3px;
+    background: #bbb;
+    border-radius: 2px;
+  }
+
+  /* ── Legend ── */
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 32px;
+    padding: 12px 20px;
+    background: #e8e7e2;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: #555;
+  }
+  .lg-box {
+    width: 14px; height: 9px; border-radius: 1px;
+    border: 1px solid #999;
+    background: #f0f0ee;
+  }
+  .lg-box.filled { background: #333; border-color: #111; }
+  .lg-box.dashed { background: repeating-linear-gradient(-45deg, #e0e0e0, #e0e0e0 2px, #f4f4f4 2px, #f4f4f4 5px); }
+  .lg-box.highlight { background: #f0f0ee; border: 1px solid #888; }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Wireframe — KRS Online IPB</h1>
+  <p>Lo-fi wireframe · 5 screen states · hitam putih</p>
+</div>
+
+<div class="screen-row">
+
+  <!-- ════════════════════════════ 1. HOME KRS ════════════════════════════ -->
+  <div class="screen-col">
+    <div class="screen-label"><span class="num">1</span>Home KRS</div>
+    <div class="phone">
+      <div class="statusbar">
+        <span class="statusbar-time">10:46</span>
+        <div class="statusbar-icons">
+          <span>4G+</span>
+          <span>▮▮▮</span>
+        </div>
+      </div>
+      <div class="addr-bar">krs.ipb.ac.id</div>
+      <div class="navbar">
+        <div class="navbar-brand">
+          <div class="brand-name">KRS Online</div>
+          <div class="brand-user">NAZWA NADYA RAHMA</div>
+        </div>
+        <div class="navbar-links">
+          <div class="nav-pill">Beranda</div>
+          <div class="nav-pill">Aktivitas</div>
+          <div class="nav-pill logout">⬚ Logout</div>
+        </div>
+      </div>
+      <div class="hero">
+        <div class="hero-tag">Periode KRS</div>
+        <div class="hero-title">KRS KKNT periode pelaksanaan</div>
+        <div class="hero-sub">6 Juli – 14 Agustus 2026</div>
+        <div class="hero-caption">Pengisian KRS dibuka 9 Feb 2026 pkl 09.00<br>s/d 13 Feb 2026 pkl 16.00</div>
+      </div>
+      <div class="status-section">
+        <div class="status-row">
+          <div class="status-dot dot-empty"></div>
+          <span class="status-label">Status Pembayaran UKT</span>
+          <div class="btn-cek">● Cek UKT</div>
+        </div>
+        <div class="status-row">
+          <div class="status-dot dot-yellow"></div>
+          <span class="status-label">Status Perwalian</span>
+          <div class="btn-cek filled">● Cek Perwalian</div>
+        </div>
+        <div class="status-row">
+          <div class="status-dot dot-bar"></div>
+          <span class="status-label">Batas SKS Semester Ini</span>
+          <div class="btn-cek filled">● Cek SKS</div>
+        </div>
+      </div>
+      <div class="two-col">
+        <div class="col-left">
+          <div class="col-header">
+            <div class="col-header-icon"><span>▣</span></div>
+            <div class="col-header-text">Data Mahasiswa</div>
+          </div>
+          <div class="btn-biodata">
+            <span>⊙</span> Cek Biodata
+          </div>
+        </div>
+        <div class="col-right">
+          <div class="col-header">
+            <div class="col-header-icon round"><span>☰</span></div>
+            <div class="col-header-text">Pengumuman</div>
+          </div>
+          <div class="annc-item">
+            <div class="annc-num">1</div>
+            <div class="annc-text">Uji Coba KRS 8–9 Jan 2026</div>
+          </div>
+          <div class="annc-item">
+            <div class="annc-num">2</div>
+            <div class="annc-text">Bayar SPP: <span class="highlight">29 Des–7 Jan</span></div>
+          </div>
+          <div class="annc-item">
+            <div class="annc-num">3</div>
+            <div class="annc-text">Perwalian Thn I: <span class="highlight">5–13 Jan</span></div>
+          </div>
+          <div class="annc-item">
+            <div class="annc-num">4</div>
+            <div class="annc-text">KRS A: 13 Jan 2026</div>
+          </div>
+          <div class="annc-item">
+            <div class="annc-num">5</div>
+            <div class="annc-text">MK SC/EC: <span class="highlight">14 Jan</span></div>
+          </div>
+          <div class="annc-more">▾ +10 poin lainnya</div>
+        </div>
+      </div>
+      <div class="phone-footer">
+        <div class="btn-isi-krs">ISI KRS</div>
+        <div class="btn-chat">🤖</div>
+      </div>
+      <div class="home-indicator"><div class="home-bar"></div></div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════ 2. CEK PEMBAYARAN UKT ════════════════════════════ -->
+  <div class="screen-col">
+    <div class="screen-label"><span class="num">2</span>Cek Pembayaran UKT</div>
+    <div class="phone">
+      <div class="statusbar">
+        <span class="statusbar-time">10:46</span>
+        <div class="statusbar-icons"><span>4G+</span><span>▮▮▮</span></div>
+      </div>
+      <div class="addr-bar">krs.ipb.ac.id</div>
+      <div class="navbar">
+        <div class="navbar-brand">
+          <div class="brand-name">KRS Online</div>
+          <div class="brand-user">NAZWA NADYA RAHMA</div>
+        </div>
+        <div class="navbar-links">
+          <div class="nav-pill">Beranda</div>
+          <div class="nav-pill">Aktivitas</div>
+          <div class="nav-pill logout">⬚ Logout</div>
+        </div>
+      </div>
+      <div class="hero">
+        <div class="hero-tag">Periode KRS</div>
+        <div class="hero-title">KRS KKNT periode pelaksanaan</div>
+        <div class="hero-sub">6 Juli – 14 Agustus 2026</div>
+        <div class="hero-caption">Pengisian KRS dibuka 9 Feb 2026 pkl 09.00<br>s/d 13 Feb 2026 pkl 16.00</div>
+      </div>
+      <div class="status-section">
+        <!-- UKT LUNAS — highlighted -->
+        <div class="status-row active">
+          <div class="dot-check"></div>
+          <span class="status-label" style="font-weight:600;">Pembayaran UKT Lunas ✓</span>
+          <div class="status-badge ok">Status OK</div>
+        </div>
+        <div class="status-row">
+          <div class="status-dot dot-yellow"></div>
+          <span class="status-label">Status Perwalian</span>
+          <div class="btn-cek filled">● Cek Perwalian</div>
+        </div>
+        <div class="status-row">
+          <div class="status-dot dot-bar"></div>
+          <span class="status-label">Batas SKS Semester Ini</span>
+          <div class="btn-cek filled">● Cek SKS</div>
+        </div>
+      </div>
+      <div class="two-col">
+        <div class="col-left">
+          <div class="col-header">
+            <div class="col-header-icon"><span>▣</span></div>
+            <div class="col-header-text">Data Mahasiswa</div>
+          </div>
+          <div class="btn-biodata"><span>⊙</span> Cek Biodata</div>
+        </div>
+        <div class="col-right">
+          <div class="col-header">
+            <div class="col-header-icon round"><span>☰</span></div>
+            <div class="col-header-text">Pengumuman</div>
+          </div>
+          <div class="annc-item"><div class="annc-num">1</div><div class="annc-text">Uji Coba KRS 8–9 Jan 2026</div></div>
+          <div class="annc-item"><div class="annc-num">2</div><div class="annc-text">Bayar SPP: <span class="highlight">29 Des–7 Jan</span></div></div>
+          <div class="annc-item"><div class="annc-num">3</div><div class="annc-text">Perwalian Thn I: <span class="highlight">5–13 Jan</span></div></div>
+          <div class="annc-item"><div class="annc-num">4</div><div class="annc-text">KRS A: 13 Jan 2026</div></div>
+          <div class="annc-item"><div class="annc-num">5</div><div class="annc-text">MK SC/EC: <span class="highlight">14 Jan</span></div></div>
+          <div class="annc-more">▾ +10 poin lainnya</div>
+        </div>
+      </div>
+      <div class="phone-footer">
+        <div class="btn-isi-krs">ISI KRS</div>
+        <div class="btn-chat">🤖</div>
+      </div>
+      <div class="home-indicator"><div class="home-bar"></div></div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════ 3. CEK PERWALIAN ════════════════════════════ -->
+  <div class="screen-col">
+    <div class="screen-label"><span class="num">3</span>Cek Perwalian</div>
+    <div class="phone">
+      <div class="statusbar">
+        <span class="statusbar-time">10:46</span>
+        <div class="statusbar-icons"><span>4G+</span><span>▮▮▮</span></div>
+      </div>
+      <div class="addr-bar">krs.ipb.ac.id</div>
+      <div class="navbar">
+        <div class="navbar-brand">
+          <div class="brand-name">KRS Online</div>
+          <div class="brand-user">NAZWA NADYA RAHMA</div>
+        </div>
+        <div class="navbar-links">
+          <div class="nav-pill">Beranda</div>
+          <div class="nav-pill">Aktivitas</div>
+          <div class="nav-pill logout">⬚ Logout</div>
+        </div>
+      </div>
+      <div class="hero">
+        <div class="hero-tag">Periode KRS</div>
+        <div class="hero-title">KRS KKNT periode pelaksanaan</div>
+        <div class="hero-sub">6 Juli – 14 Agustus 2026</div>
+        <div class="hero-caption">Pengisian KRS dibuka 9 Feb 2026 pkl 09.00<br>s/d 13 Feb 2026 pkl 16.00</div>
+      </div>
+      <div class="status-section">
+        <div class="status-row active">
+          <div class="dot-check"></div>
+          <span class="status-label" style="font-weight:600;">Pembayaran UKT Lunas ✓</span>
+          <div class="status-badge ok">Status OK</div>
+        </div>
+        <!-- Perwalian disetujui — highlighted ACC -->
+        <div class="status-row active">
+          <div class="dot-check"></div>
+          <span class="status-label" style="font-weight:600;">Perwalian Disetujui ✓</span>
+          <div class="status-badge acc">Status ACC</div>
+        </div>
+        <div class="status-row">
+          <div class="status-dot dot-bar"></div>
+          <span class="status-label">Batas SKS Semester Ini</span>
+          <div class="btn-cek filled">● Cek SKS</div>
+        </div>
+      </div>
+      <div class="two-col">
+        <div class="col-left">
+          <div class="col-header">
+            <div class="col-header-icon"><span>▣</span></div>
+            <div class="col-header-text">Data Mahasiswa</div>
+          </div>
+          <div class="btn-biodata"><span>⊙</span> Cek Biodata</div>
+        </div>
+        <div class="col-right">
+          <div class="col-header">
+            <div class="col-header-icon round"><span>☰</span></div>
+            <div class="col-header-text">Pengumuman</div>
+          </div>
+          <div class="annc-item"><div class="annc-num">1</div><div class="annc-text">Uji Coba KRS 8–9 Jan 2026</div></div>
+          <div class="annc-item"><div class="annc-num">2</div><div class="annc-text">Bayar SPP: <span class="highlight">29 Des–7 Jan</span></div></div>
+          <div class="annc-item"><div class="annc-num">3</div><div class="annc-text">Perwalian Thn I: <span class="highlight">5–13 Jan</span></div></div>
+          <div class="annc-item"><div class="annc-num">4</div><div class="annc-text">KRS A: 13 Jan 2026</div></div>
+          <div class="annc-item"><div class="annc-num">5</div><div class="annc-text">MK SC/EC: <span class="highlight">14 Jan</span></div></div>
+          <div class="annc-more">▾ +10 poin lainnya</div>
+        </div>
+      </div>
+      <div class="phone-footer">
+        <div class="btn-isi-krs">ISI KRS</div>
+        <div class="btn-chat">🤖</div>
+      </div>
+      <div class="home-indicator"><div class="home-bar"></div></div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════ 4. CEK BATAS SKS ════════════════════════════ -->
+  <div class="screen-col">
+    <div class="screen-label"><span class="num">4</span>Cek Batas SKS</div>
+    <div class="phone">
+      <div class="statusbar">
+        <span class="statusbar-time">10:46</span>
+        <div class="statusbar-icons"><span>4G+</span><span>▮▮▮</span></div>
+      </div>
+      <div class="addr-bar">krs.ipb.ac.id</div>
+      <div class="navbar">
+        <div class="navbar-brand">
+          <div class="brand-name">KRS Online</div>
+          <div class="brand-user">NAZWA NADYA RAHMA</div>
+        </div>
+        <div class="navbar-links">
+          <div class="nav-pill">Beranda</div>
+          <div class="nav-pill">Aktivitas</div>
+          <div class="nav-pill logout">⬚ Logout</div>
+        </div>
+      </div>
+      <div class="hero">
+        <div class="hero-tag">Periode KRS</div>
+        <div class="hero-title">KRS KKNT periode pelaksanaan</div>
+        <div class="hero-sub">6 Juli – 14 Agustus 2026</div>
+        <div class="hero-caption">Pengisian KRS dibuka 9 Feb 2026 pkl 09.00<br>s/d 13 Feb 2026 pkl 16.00</div>
+      </div>
+      <div class="status-section">
+        <div class="status-row active">
+          <div class="dot-check"></div>
+          <span class="status-label" style="font-weight:600;">Pembayaran UKT Lunas ✓</span>
+          <div class="status-badge ok">Status OK</div>
+        </div>
+        <div class="status-row active">
+          <div class="dot-check"></div>
+          <span class="status-label" style="font-weight:600;">Perwalian Disetujui ✓</span>
+          <div class="status-badge acc">Status ACC</div>
+        </div>
+        <!-- SKS expanded -->
+        <div class="status-row active">
+          <div class="dot-check"></div>
+          <span class="status-label" style="font-weight:600;">Batas SKS Semester Ini</span>
+          <div class="sks-count" style="font-family:'DM Mono',monospace;font-size:7px;font-weight:600;color:#c44;">0 / 24 SKS</div>
+        </div>
+      </div>
+      <div class="sks-expanded">
+        <div class="sks-bar-track">
+          <div class="sks-bar-fill" style="width: 2%;"></div>
+        </div>
+        <div class="sks-note">Sisa kuota: 24 SKS · IP Semester: 4.00</div>
+      </div>
+      <div class="two-col">
+        <div class="col-left">
+          <div class="col-header">
+            <div class="col-header-icon"><span>▣</span></div>
+            <div class="col-header-text">Data Mahasiswa</div>
+          </div>
+          <div class="btn-biodata"><span>⊙</span> Cek Biodata</div>
+        </div>
+        <div class="col-right">
+          <div class="col-header">
+            <div class="col-header-icon round"><span>☰</span></div>
+            <div class="col-header-text">Pengumuman</div>
+          </div>
+          <div class="annc-item"><div class="annc-num">1</div><div class="annc-text">Uji Coba KRS 8–9 Jan 2026</div></div>
+          <div class="annc-item"><div class="annc-num">2</div><div class="annc-text">Bayar SPP: <span class="highlight">29 Des–7 Jan</span></div></div>
+          <div class="annc-item"><div class="annc-num">3</div><div class="annc-text">Perwalian Thn I: <span class="highlight">5–13 Jan</span></div></div>
+          <div class="annc-item"><div class="annc-num">4</div><div class="annc-text">KRS A: 13 Jan 2026</div></div>
+          <div class="annc-item"><div class="annc-num">5</div><div class="annc-text">MK SC/EC: <span class="highlight">14 Jan</span></div></div>
+          <div class="annc-more">▾ +10 poin lainnya</div>
+        </div>
+      </div>
+      <div class="phone-footer">
+        <div class="btn-isi-krs">ISI KRS</div>
+        <div class="btn-chat">🤖</div>
+      </div>
+      <div class="home-indicator"><div class="home-bar"></div></div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════ 5. CEK BIODATA ════════════════════════════ -->
+  <div class="screen-col">
+    <div class="screen-label"><span class="num">5</span>Cek Biodata</div>
+    <div class="phone">
+      <div class="statusbar">
+        <span class="statusbar-time">10:46</span>
+        <div class="statusbar-icons"><span>4G+</span><span>▮▮▮</span></div>
+      </div>
+      <div class="addr-bar">krs.ipb.ac.id</div>
+      <div class="navbar">
+        <div class="navbar-brand">
+          <div class="brand-name">KRS Online</div>
+          <div class="brand-user">NAZWA NADYA RAHMA</div>
+        </div>
+        <div class="navbar-links">
+          <div class="nav-pill">Beranda</div>
+          <div class="nav-pill">Aktivitas</div>
+          <div class="nav-pill logout">⬚ Logout</div>
+        </div>
+      </div>
+      <div class="hero">
+        <div class="hero-tag">Periode KRS</div>
+        <div class="hero-title">KRS KKNT periode pelaksanaan</div>
+        <div class="hero-sub">6 Juli – 14 Agustus 2026</div>
+        <div class="hero-caption">Pengisian KRS dibuka 9 Feb 2026 pkl 09.00<br>s/d 13 Feb 2026 pkl 16.00</div>
+      </div>
+      <div class="status-section">
+        <div class="status-row active">
+          <div class="dot-check"></div>
+          <span class="status-label" style="font-weight:600;">Pembayaran UKT Lunas ✓</span>
+          <div class="status-badge ok">Status OK</div>
+        </div>
+        <div class="status-row active">
+          <div class="dot-check"></div>
+          <span class="status-label" style="font-weight:600;">Perwalian Disetujui ✓</span>
+          <div class="status-badge acc">Status ACC</div>
+        </div>
+        <div class="status-row active">
+          <div class="dot-check"></div>
+          <span class="status-label" style="font-weight:600;">Batas SKS Semester Ini</span>
+          <div style="font-family:'DM Mono',monospace;font-size:7px;font-weight:600;color:#c44;">0 / 24 SKS</div>
+        </div>
+      </div>
+      <div class="sks-expanded">
+        <div class="sks-bar-track">
+          <div class="sks-bar-fill" style="width: 2%;"></div>
+        </div>
+        <div class="sks-note">Sisa kuota: 24 SKS · IP Semester: 4.00</div>
+      </div>
+      <div class="two-col">
+        <!-- BIODATA EXPANDED -->
+        <div class="col-left">
+          <div class="col-header">
+            <div class="col-header-icon"><span>▣</span></div>
+            <div class="col-header-text">Data Mahasiswa</div>
+          </div>
+          <div class="biodata-card">
+            <div class="bio-name">NAZWA NADYA RAHMA</div>
+            <div class="bio-row">
+              <span class="bio-key">NIM</span>
+              <span class="bio-val">M04032410060</span>
+            </div>
+            <div class="bio-row">
+              <span class="bio-key">Prodi</span>
+              <span class="bio-val">Ilmu Komputer</span>
+            </div>
+            <div class="bio-row">
+              <span class="bio-key">Semester</span>
+              <span class="bio-val">5 (Alih Thn)</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-right">
+          <div class="col-header">
+            <div class="col-header-icon round"><span>☰</span></div>
+            <div class="col-header-text">Pengumuman</div>
+          </div>
+          <div class="annc-item"><div class="annc-num">1</div><div class="annc-text">Uji Coba KRS 8–9 Jan 2026</div></div>
+          <div class="annc-item"><div class="annc-num">2</div><div class="annc-text">Bayar SPP: <span class="highlight">29 Des–7 Jan</span></div></div>
+          <div class="annc-item"><div class="annc-num">3</div><div class="annc-text">Perwalian Thn I: <span class="highlight">5–13 Jan</span></div></div>
+          <div class="annc-item"><div class="annc-num">4</div><div class="annc-text">KRS A: 13 Jan 2026</div></div>
+          <div class="annc-item"><div class="annc-num">5</div><div class="annc-text">MK SC/EC: <span class="highlight">14 Jan</span></div></div>
+          <div class="annc-more">▾ +10 poin lainnya</div>
+        </div>
+      </div>
+      <div class="phone-footer">
+        <div class="btn-isi-krs">ISI KRS</div>
+        <div class="btn-chat">🤖</div>
+      </div>
+      <div class="home-indicator"><div class="home-bar"></div></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Legend -->
+<div class="legend">
+  <div class="legend-item"><div class="lg-box"></div> Komponen default</div>
+  <div class="legend-item"><div class="lg-box filled"></div> Tombol / aksi utama</div>
+  <div class="legend-item"><div class="lg-box dashed"></div> Area hero / banner</div>
+  <div class="legend-item"><div class="lg-box highlight"></div> State aktif / expanded</div>
+  <div class="legend-item" style="font-size:9px;color:#888;font-family:'DM Mono',monospace;">Lo-fi wireframe · Grayscale only · KRS Online IPB 2026</div>
+</div>
+
+</body>
+</html>
